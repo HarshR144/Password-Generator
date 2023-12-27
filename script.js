@@ -18,7 +18,7 @@ let checkCount = 1;
 // 1st set inital password length when page load
 handleSlider();
 //set strength circle initially -> grey
-
+setIndicator('#ccc');
 
 // functions
 
@@ -27,13 +27,17 @@ function handleSlider() {
 
     inputSlider.value = passwordLength;
     lengthDisplay.innerText = passwordLength;
-    
+
+    let min = inputSlider.min;
+    let max = inputSlider.max;
+    inputSlider.style.backgroundSize =`${((passwordLength-min)*100/(max-min))}% 100%`;
+     
     
 }
 
 function setIndicator(color) {
     indicator.style.backgroundColor = color;
-    indicator.style.boxShadow = "color";
+    indicator.style.boxShadow = ` 0 0 12px 1px ${color}`;
 }
 function getRandomInteger(min, max){
     return (Math.floor(Math.random()*(max-min)) + min);
